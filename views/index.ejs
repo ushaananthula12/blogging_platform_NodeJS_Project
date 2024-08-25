@@ -1,0 +1,26 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Blogging Platform</title>
+</head>
+<body>
+  <h1>Blogging Platform</h1>
+  <a href="/posts/new">Create a New Post</a>
+  <ul>
+    <% posts.forEach(post => { %>
+      <li>
+        <h2><a href="/posts/<%= post._id %>"><%= post.title %></a></h2>
+        <p><%= post.content %></p>
+        <form action="/posts/<%= post._id %>" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
